@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Link</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <p>
+    It seems that this device has not been linked to any account yet.<br />
+    Please press the button below to start linking.<br />
+    <button ion-button full (click)="startLink()">Link</button>
+
+    {{ qrcodeResult }}
+  </p>
+</ion-content>
