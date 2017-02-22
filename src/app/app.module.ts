@@ -2,12 +2,15 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LinkPage } from '../pages/link/link';
+import { ScanPage } from '../pages/scan/scan';
 import { HttpModule } from '@angular/http';
+import { IdService } from './services/id.service';
 
 @NgModule({
   declarations: [
     MyApp,
-    LinkPage
+    LinkPage,
+    ScanPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -16,8 +19,12 @@ import { HttpModule } from '@angular/http';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LinkPage
+    LinkPage,
+    ScanPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    IdService
+  ]
 })
 export class AppModule {}
