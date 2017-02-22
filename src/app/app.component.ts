@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { LinkPage } from '../pages/link/link';
-
+import { ScanPage } from '../pages/scan/scan';
+import { IdService } from './services/id.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +13,7 @@ export class MyApp {
 
   rootPage: any;
 
-  constructor(public platform: Platform, public menu: MenuController) {
+  constructor(public platform: Platform, public menu: MenuController, public _idService: IdService) {
     this.initializeApp();
   }
 
@@ -20,7 +21,13 @@ export class MyApp {
     this.platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
-      this.goToLinkPage();
+
+      this._idService.getId().then((idFromService) => {
+        this.goToScanPage();
+      }).catch((err) => {
+        console.log(err);
+        this.goToLinkPage();
+      });
     });
   }
 
@@ -29,6 +36,6 @@ export class MyApp {
   }
 
   goToScanPage() {
-
+    this.nav.setRoot(ScanPage);
   }
 }
