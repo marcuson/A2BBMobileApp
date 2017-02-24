@@ -23,19 +23,23 @@ export class LinkPage {
   startLink() {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    let devId: number;
 
     this.scan().then((result) => {
-      this.linkInfo = JSON.stringify(result);
+      this.linkInfo = 'Temp id read: ' + result.text;
       return this._http.post(Const.API_ENDPOINT + '/api/link/' + result.text, null, {
         headers: headers
       }).toPromise();
-    }).then((dev: any) => {
-      this.linkInfo = 'Linked with id: ' + dev.id + '!';
-      return this._idService.saveToDevice(dev.id);
+    }).then((response) => {
+      const resJson = response.json();
+      this.linkInfo = 'Device id: ' + resJson.payload.id;
+      devId = resJson.payload.id;
+      return this._idService.saveToDevice(devId);
     }).then(() => {
+      this.linkInfo = 'Linked with id: ' + devId + '!';
       this.navCtrl.setRoot(ScanPage);
     }).catch((error) => {
-      this.linkInfo = JSON.stringify(error);
+      this.linkInfo += ' -- Error: ' + JSON.stringify(error);
     });
   }
 
