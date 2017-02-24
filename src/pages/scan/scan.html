@@ -11,6 +11,11 @@
 
     {{ info }}
   </p>
+
+  <p class="res-icon">
+    <ion-icon *ngIf="granted === true" name="checkmark" color="secondary"></ion-icon>
+    <ion-icon *ngIf="granted === false" name="close" color="danger"></ion-icon>
+  </p>
 </ion-content>
 
 <ion-footer no-shadow>
