@@ -33,6 +33,7 @@ export class IdService {
   }
 
   delete(): Promise<RemoveResult> {
+    this._id = null;
     return File.removeFile(cordova.file.dataDirectory, 'id');
   }
 }
