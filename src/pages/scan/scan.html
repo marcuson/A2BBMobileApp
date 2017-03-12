@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Link</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p>
+    Press the button below to scan QRCode.<br />
+    <button ion-button full (click)="startScan()">Scan</button>
+
+    {{ info }}
+  </p>
+
+  <p class="res-icon">
+    <ion-icon *ngIf="granted === true" name="checkmark" color="secondary"></ion-icon>
+    <ion-icon *ngIf="granted === false" name="close" color="danger"></ion-icon>
+  </p>
+</ion-content>
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+    <p>
+      <button ion-button full (click)="unlink()">Unlink</button>
+    </p>
+	</ion-toolbar>
+</ion-footer>
